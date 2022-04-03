@@ -15,7 +15,6 @@ app.use(express.static('dist'))
 
 app.get('/', async (_req, res) => {
   axios.get('http://localhost:1337/episodes/long').then((response) => {
-    console.log(response.data);
     const rendered = renderToString(<App props={response.data} />)
     const index = readFileSync(`public/index.html`, `utf8`)
 
