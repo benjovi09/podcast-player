@@ -1,12 +1,16 @@
 import React from 'react'
 
 const ImageMarker = ({ source }) => (
-  <img src={'http://localhost:1337' + source} />
+  <img className="podcast-marker" src={'http://localhost:1337' + source} />
 )
 
-const AdMarker = ({ link, content }) => <a href={link}>{content}</a>
+const AdMarker = ({ link, content }) => (
+  <a className="podcast-marker" href={link}>
+    {content}
+  </a>
+)
 
-const TextMarker = ({ content }) => <p>{content}</p>
+const TextMarker = ({ content }) => <p className="podcast-marker">{content}</p>
 
 const renderMarkerType = (props) => {
   switch (props.type) {

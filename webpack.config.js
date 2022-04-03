@@ -1,7 +1,7 @@
 module.exports = {
     mode: "development",
     entry:{
-        client: "./client/client.jsx",
+      client: "./client/client.jsx",
     },
     output: {
         filename: '[name].js'
