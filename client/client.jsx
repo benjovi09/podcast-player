@@ -40,6 +40,21 @@ const showMarkersByStartTime = () => {
   })
 }
 
-const toggleAudioTimePolling = () => setInterval(showMarkersByStartTime, 500)
-podcastAudio.addEventListener('play', toggleAudioTimePolling)
+let pollingIntervalId
+const startAudioTimePolling = () => {
+  if (pollingIntervalId) {
+    console.warn('pollingIntervalId already has a value')
+  }
+  pollingIntervalId = setInterval(showMarkersByStartTime, 500)
+}
+const stopAudioTimePolling = () => {
+  if (!pollingIntervalId) {
+    console.warn('pollingIntervalId has already been cleared')
+  }
+  clearInterval(pollingIntervalId)
+  pollingIntervalId = null
+}
+
+podcastAudio.addEventListener('play', startAudioTimePolling)
+podcastAudio.addEventListener('pause', stopAudioTimePolling)
 window.onload = hideAllMarkers
