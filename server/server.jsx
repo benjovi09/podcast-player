@@ -13,13 +13,15 @@ const port = 9001
 app.use(compression())
 app.use(express.static('dist'))
 
-app.get('/', async (_req, res) => {
-  axios.get('http://localhost:1337/episodes/long').then((response) => {
-    const rendered = renderToString(<App props={response.data} />)
-    const index = readFileSync(`public/index.html`, `utf8`)
+app.get('/:episodeId', async (_req, res) => {
+  axios
+    .get(`http://localhost:1337/episodes/${_req.params.episodeId}`)
+    .then((response) => {
+      const rendered = renderToString(<App props={response.data} />)
+      const index = readFileSync(`public/index.html`, `utf8`)
 
-    res.send(index.replace('{{rendered}}', rendered))
-  })
+      res.send(index.replace('{{rendered}}', rendered))
+    })
 })
 
 app.listen(port)

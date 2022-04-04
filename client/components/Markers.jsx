@@ -2,13 +2,13 @@ import React from 'react'
 import Marker from './Marker'
 
 const Markers = ({ props }) => (
-  <ol>
+  <div>
     {props.map((marker) => (
-      <li key={marker.start}>
+      <div key={marker.start}>
         <Marker props={marker}></Marker>
-      </li>
+      </div>
     ))}
-  </ol>
+  </div>
 )
 
 export default Markers
